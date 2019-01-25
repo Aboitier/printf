@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 19:51:24 by aboitier          #+#    #+#              #
-#    Updated: 2019/01/24 23:37:07 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/25 05:12:25 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 LIB_PATH = ./libft
 A_PATH = ./.annex
 
-LIB = $(LIB_PATH)/libft.a
+LIBFT = $(LIB_PATH)/libft.a
 
 ###################
 #				  #
@@ -80,12 +80,16 @@ endif
 
 ptest2 :
 	@$(MAKE) -C $(LIB_PATH)
-	@$(CC) $(CFLAGS) $(LIB) $(A_PATH)/real_printf.c -o $(REAL)
+	@$(CC) $(CFLAGS) $(LIBFT) $(A_PATH)/real_printf.c -o $(REAL)
 	@echo "$(GREEN)REAL PRINTF$(END)" 
 	@./$(REAL) "$(PTEST_ARGS)"
 	@#./$(NAME) $(1)
 
-ftest : 
+chgf : re 
+	@$(MAKE) -C $(LIB_PATH) 
+	@#$(CC) $(CFLAGS) $(LIBFT) $(A_PATH)/modify/res_flags.c -o test
+	@sh .annex/modify/flags.sh $(f)
+	#@./test $(A_PATH)/real_printf.c
 
 #############
 #			#
