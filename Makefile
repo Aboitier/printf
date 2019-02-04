@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 19:51:24 by aboitier          #+#    #+#              #
-#    Updated: 2019/01/25 05:12:25 by aboitier         ###   ########.fr        #
+#    Updated: 2019/01/26 19:02:17 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,8 +68,8 @@ REAL = printf
 
 ptest : 
 	@$(MAKE) -C $(LIB_PATH)
-	@$(CC) $(CFLAGS) $(LIB) $(A_PATH)/real_printf.c -o $(REAL)
-	@echo "$(GREEN)REAL PRINTF$(END)" 
+	@$(CC) $(CFLAGS) $(LIBFT) $(A_PATH)/real_printf.c -o $(REAL)
+	@echo "$(GREEN) REAL PRINTF $(END)" 
 	@./$(REAL) "$(t)"
 	@#./$(NAME) $(1)
 

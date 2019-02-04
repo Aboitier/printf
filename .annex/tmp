@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include "../printf_files/head.h"
+
+int		main(int ac, char **av)
+{
+	void *ptr93 = NULL;
+	char c92 = "c";
+	char str91[400] = "Le panpsychisme est une conception philosophique selon laquelle l'esprit est une propriete ou un aspect fondamental du monde qui s'y presente partout. L'esprit se deploierait ainsi dans toute l'etendue de l'Univers.";
+	int i90 = -284722;
+	double d83 = -270540;
+	unsigned int X82 = -294906;
+	char c81 = "o";
+	double f80 = -285597;
+	char c73 = "c";
+	void *ptr72 = NULL;
+	int i71 = -295388;
+	unsigned int X70 = -293985;
+	char c62 = "c";
+	double d61 = -274268;
+	char str60[400] = "how do you feel about this";
+	double u50 = -274821;
+	double o43 = -280067;
+	char str42[400] = "how do you feel about this";
+	double d41 = -279674;
+	double f40 = -272849;
+	char str33[400] = "Le panpsychisme est une conception philosophique selon laquelle l'esprit est une propriete ou un aspect fondamental du monde qui s'y presente partout. L'esprit se deploierait ainsi dans toute l'etendue de l'Univers.";
+	char c32 = "o";
+	double f31 = -270908;
+	unsigned int X30 = -295761;
+	double u23 = -271958;
+	double d22 = -282779;
+	unsigned int x21 = -283768;
+	char str20[400] = "		1,2, salmy the salmon";
+	unsigned int X11 = -277512;
+	double o10 = -297442;
+	double u01 = -286151;
+	double f00 = -281741;
+		printf("%f%u", f00,u01);
+		printf("%o%X", o10,X11);
+		printf("%s%x%d%u", str20,x21,d22,u23);
+		printf("%X%f%c%s", X30,f31,c32,str33);
+		printf("%f%d%s%o", f40,d41,str42,o43);
+		printf("%u", u50);
+		printf("%s%d%c", str60,d61,c62);
+		printf("%X%i%p%c", X70,i71,ptr72,c73);
+		printf("%f%c%X%d", f80,c81,X82,d83);
+		printf("%i%s%c%p", i90,str91,c92,ptr93);
+	return (0);
+}
