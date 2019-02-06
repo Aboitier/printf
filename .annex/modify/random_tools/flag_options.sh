@@ -1,17 +1,17 @@
 #!/bin/sh
 
-flag=$2
-if [  \( "$1" == 1 \) ];then
+rand=$[ ( RANDOM % 6 ) + 1 ]
+if [  \( "$rand" == 1 \) ];then
 	flag+="\x20";
-elif [  \( "$1" == 2 \) ];then
+elif [  \( "$rand" == 2 \) ];then
     flag+="#";
-elif [  \( "$1" == 3 \) ];then
+elif [  \( "$rand" == 3 \) ];then
     flag+="0";
-elif [  \( "$1" == 4 \) ];then
+elif [  \( "$rand" == 4 \) ];then
     flag+="+";
-elif [  \( "$1" == 5 \) ];then
+elif [  \( "$rand" == 5 \) ];then
     flag+="-";
-elif [  \( "$1" == 6 \) ];then
+elif [  \( "$rand" == 6 \) ];then
     flag+="";
 fi
 export flag

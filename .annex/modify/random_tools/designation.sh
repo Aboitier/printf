@@ -12,7 +12,7 @@ elif [  \( "$1" == "d" \) ];then
 elif [  \( "$1" == "i" \) ];then
 	designation=([0]="int i"$2"");
 elif [  \( "$1" == "o" \) ];then
-	designation=([0]="double o"$2"");
+	designation=([0]="unsigned int o"$2"");
 elif [  \( "$1" == "u" \) ];then
 	designation=([0]="double u"$2"");
 elif [  \( "$1" == "x" \) ];then

@@ -17,9 +17,9 @@ int     main(void)
 	char c01 = 'o';
 	char c00 = 'c';
 
-	printf("%c%c%x%s", c00,c01,x02,str03);
-	printf("%c%f%X", c10,f11,X12);
-	printf("%s%f%p%X", str20,f21,ptr22,X23);
-	printf("%s", str30);
+	printf("%c\n%c\n%01hhx\n%s\n", c00,c01,x02,str03);
+	printf("%c\n%012lf\n%016lX\n", c10,f11,X12);
+	printf("%s\n%04llf\n%p\n%0llX\n", str20,f21,ptr22,X23);
+	printf("%s\n", str30);
 	return (0);
 }

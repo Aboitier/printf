@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 19:51:24 by aboitier          #+#    #+#              #
-#    Updated: 2019/01/26 19:02:17 by aboitier         ###   ########.fr        #
+#    Updated: 2019/02/06 00:09:48 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,6 @@ re : fclean all
 
 REAL = printf
 
-.PHONY: ptest2
 
 ptest : 
 	@$(MAKE) -C $(LIB_PATH)
@@ -75,19 +74,19 @@ ptest :
 
 ifeq (ptest2,$(firstword $(MAKECMDGOALS)))
   PTEST_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
- 	 $(eval $(PTEST_ARGS):;@:)
+ 	 $(eval $RGS):;@:)
 endif
 
 ptest2 :
+	@sh .annex/modify/pct_conv.sh
 	@$(MAKE) -C $(LIB_PATH)
 	@$(CC) $(CFLAGS) $(LIBFT) $(A_PATH)/real_printf.c -o $(REAL)
 	@echo "$(GREEN)REAL PRINTF$(END)" 
-	@./$(REAL) "$(PTEST_ARGS)"
+	@./$(REAL)
 	@#./$(NAME) $(1)
 
 chgf : re 
 	@$(MAKE) -C $(LIB_PATH) 
-	@#$(CC) $(CFLAGS) $(LIBFT) $(A_PATH)/modify/res_flags.c -o test
 	@sh .annex/modify/flags.sh $(f)
 	#@./test $(A_PATH)/real_printf.c
 
@@ -105,6 +104,4 @@ MAGENTA	= \x1b[35m
 CYAN	= \x1b[36m
 END     = \x1b[0m
 
-
-
-
+.PHONY: ptest2

@@ -13,7 +13,7 @@ if [ "$1" = "s" ];then
 		var=([0]="\"Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx.\";");
 	fi
 elif [[ "$1" = "i" || "$1" = "d" || "$1" = "o" || "$1" = "x" || "$1" = "X" || "$1" = "u" || "$1" = "f" ]];then
-	var=$[ ( RANDOM % 2147483647) - 300000 ]
+	var=$[ ( RANDOM % 2147483647) - 15000 ]
 	var=$var\;
 #	if [ "$flag" == 1 ];then
 #		var=([0]="10;");
@@ -27,9 +27,9 @@ elif [[ "$1" = "i" || "$1" = "d" || "$1" = "o" || "$1" = "x" || "$1" = "X" || "$
 elif [ "$1" = "c" ];then
 	flag=$[ ( RANDOM % 2 ) + 1 ]
 	if [ "$flag" == 1 ];then
-		var=([0]="\"c\";");
+		var=([0]="\'c\';");
 	elif [ "$flag" == 2 ];then
-		var=([0]="\"o\";");
+		var=([0]="\'o\';");
 	fi
 elif [ "$1" = "p" ];then
 	var=([0]="NULL;");
