@@ -4,7 +4,7 @@
  #### REMOVE WHAT'S BETWEEN % AND THE CONVERSION INDICATOR	#####
 ##																##
 
-awk '{gsub(/%[^A-Ga-gm-no-si-ix-xX-X]+/, "%")} 1' .annex/real_printf.c > .annex/modify/tmp
+awk '{gsub(/%[^A-Ga-gm-no-sixXu]+/, "%")} 1' .annex/real_printf.c > .annex/modify/tmp
 cat .annex/modify/tmp > .annex/real_printf.c
 
 ##																##
@@ -32,15 +32,16 @@ do
 			if [[ $curr_conv = [diouxXf] ]];then
 				. .annex/modify/random_tools/flag_options.sh
 				. .annex/modify/random_tools/width.sh $flag
+				. .annex/modify/random_tools/precision.sh $flag
 			fi	
 			if [[ $curr_conv = [diouxX] ]];then
 				. .annex/modify/random_tools/flag_dioux.sh $flag
-			elif [ $curr_conv == 'f' ];then
+			elif [[ $curr_conv = 'f' ]];then
 				. .annex/modify/random_tools/flag_f.sh $flag
 			elif [[ $curr_conv = [scp] ]]; then
 				flag=""
 			fi
-			perl -pe 's{%}{++$n == '$j' ? "%'$flag'" : $&}ge' .annex/real_printf.c > .annex/modify/tmp
+			perl -pe 's{[;]"_END" [=] %}{++$n == '$j' ? "\"_END\" >\"_CYAN\"'$flag'\"_END\"<; = %'$flag'" : $&}ge' .annex/real_printf.c > .annex/modify/tmp
 			cat .annex/modify/tmp > .annex/real_printf.c
 			diff=$[$diff + 1]
 			j=$[$j + 1]
@@ -52,6 +53,7 @@ do
 			if [[ $curr_conv = [diouxXf] ]];then
 				. .annex/modify/random_tools/flag_options.sh
 				. .annex/modify/random_tools/width.sh $flag
+				. .annex/modify/random_tools/precision.sh $flag
 			fi	
 			if [[ $curr_conv = [diouxX] ]];then
 				. .annex/modify/random_tools/flag_dioux.sh $flag
@@ -60,7 +62,7 @@ do
 			elif [[ $curr_conv = [scp] ]];then
 				flag=""
 			fi
-			perl -pe 's{%}{++$n == '$diffi' ? "%'$flag'" : $&}ge' .annex/real_printf.c > .annex/modify/tmp
+			perl -pe 's{[;]"_END" [=] %}{++$n == '$diffi' ? "\"_END\" >\"_CYAN\"'$flag'\"_END\"<; = %'$flag'" : $&}ge' .annex/real_printf.c > .annex/modify/tmp
 			cat .annex/modify/tmp > .annex/real_printf.c
 	fi
 done

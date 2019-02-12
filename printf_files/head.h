@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 21:00:25 by aboitier          #+#    #+#             */
-/*   Updated: 2019/01/24 21:40:30 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/12 19:21:42 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,16 @@
 
 #include "../libft/libft.h"
 
-
+typedef struct 	s_ftprintf
+{
+	char 		conv[1];
+	int			rank;
+	char		*option;
+	int			width;
+	char		*precision;
+	char		*symptomes;
+	s_ftprintf	next;
+}				ptf;
 /************
 *			*
 *  COLORS	*
@@ -34,5 +43,13 @@
 # define _BMAGENTA	"\x1b[1;35m"
 # define _CYAN   	"\x1b[36m"
 # define _END  	 	"\x1b[0m"
+
+int		ft_auscultate(const char *patient, ptf *head);
+int		ft_count_pct(const char *format, ptf *head);
+ptf		*init_head(ptf head)
+ptf		*init_conv(ptf pct, size_t len);
+
+int		ft_printf(const char *format, ...);
+
 
 #endif

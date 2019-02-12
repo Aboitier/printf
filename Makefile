@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 19:51:24 by aboitier          #+#    #+#              #
-#    Updated: 2019/02/06 00:09:48 by aboitier         ###   ########.fr        #
+#    Updated: 2019/02/11 21:05:31 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,32 +63,20 @@ re : fclean all
 #############
 
 REAL = printf
+MINE = ft_printf
 
-
-ptest : 
+randomt :
+	@sh .annex/modify/pct_conv.sh	
 	@$(MAKE) -C $(LIB_PATH)
-	@$(CC) $(CFLAGS) $(LIBFT) $(A_PATH)/real_printf.c -o $(REAL)
-	@echo "$(GREEN) REAL PRINTF $(END)" 
-	@./$(REAL) "$(t)"
-	@#./$(NAME) $(1)
-
-ifeq (ptest2,$(firstword $(MAKECMDGOALS)))
-  PTEST_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
- 	 $(eval $RGS):;@:)
-endif
-
-ptest2 :
-	@sh .annex/modify/pct_conv.sh
-	@$(MAKE) -C $(LIB_PATH)
-	@$(CC) $(CFLAGS) $(LIBFT) $(A_PATH)/real_printf.c -o $(REAL)
-	@echo "$(GREEN)REAL PRINTF$(END)" 
+	@$(CC) $(LIBFT) $(A_PATH)/real_printf.c -o $(REAL)
+	@echo "$(GREEN)\tREAL PRINTF$(END)" 
 	@./$(REAL)
 	@#./$(NAME) $(1)
 
-chgf : re 
-	@$(MAKE) -C $(LIB_PATH) 
-	@sh .annex/modify/flags.sh $(f)
-	#@./test $(A_PATH)/real_printf.c
+#ifeq (ptest2,$(firstword $(MAKECMDGOALS)))
+#  PTEST_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+# 	 $(eval $RGS):;@:)
+#endif
 
 #############
 #			#

@@ -9,4 +9,4 @@ width=$[ ( RANDOM % 3 ) + 1 ]
 	elif [ $width == "3" ];then
 		flag+=$[ ( RANDOM % 12 ) + 5 ];
 	fi
-export width
+export flag
