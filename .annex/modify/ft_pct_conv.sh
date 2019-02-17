@@ -3,12 +3,12 @@
 #
 ### CLEANING
 #
-sed -i '' "/;/d" .annex/main_test.c
-sed -i '' '/^[[:space:]]*$/d' .annex/main_test.c
-awk -v n=3 -v s="\n" 'NR == n {print s} {print}' .annex/main_test.c > .annex/tmp
-cat .annex/tmp > .annex/main_test.c
-perl -0777 -pe 's {\{} {$&\n\treturn (0);}g' .annex/main_test.c > .annex/tmp
-cat .annex/tmp > .annex/main_test.c
+sed -i '' "/;/d" .annex/real_printf.c
+sed -i '' '/^[[:space:]]*$/d' .annex/real_printf.c
+awk -v n=3 -v s="\n" 'NR == n {print s} {print}' .annex/real_printf.c > .annex/tmp
+cat .annex/tmp > .annex/real_printf.c
+perl -0777 -pe 's {\{} {$&\n\treturn (0);}g' .annex/real_printf.c > .annex/tmp
+cat .annex/tmp > .annex/real_printf.c
 #
 ### SETTING UP
 #
@@ -50,7 +50,7 @@ while true; do
 				fi
 				echo "Thanks. $line_nb lines have been set up with the $choice conversion indicator."; break;;	
         [Rr]* ) echo "Thank you. $line_nb lines have been set up."; break;;
-		* ) echo "Please answer choose or random, no joke this time";;
+		* ) echo "Please answer yes or no, no joke this time";;
     esac
 done
 
@@ -76,35 +76,35 @@ do
 			m_var=`echo $var | cut -c 2- | rev | cut -c 3- | rev`
 			input_pf+="$conv $m_var = %$conv"
 		else
-			input_pf+="\"_BBLUE\"$conv\"_END\" \"_MAGENTA\"$var\"_END\" = %$conv"	
+			input_pf+="\"_RED\"$conv\"_END\" \"_MAGENTA\"$var\"_END\" = %$conv"	
 		fi
 		. .annex/modify/random_tools/designation.sh "${conv}" "${var_index}"
 		add_var=([0]=""${designation[0]}" = "${var[0]}"")
-		perl -0777 -pe "s {\)\n\{} {$&\n\t${add_var[0]}}g" .annex/main_test.c > .annex/tmp
-		cat .annex/tmp > .annex/main_test.c
+		perl -0777 -pe "s {\)\n\{} {$&\n\t${add_var[0]}}g" .annex/real_printf.c > .annex/tmp
+		cat .annex/tmp > .annex/real_printf.c
 		. .annex/modify/random_tools/var_name.sh $conv $var_index
 		var_name+="$chosen_name,"
 		j=$[$j + 1]
 	done
 	var_name=`echo $var_name | sed 's/.$//'`
 	if [ $i -lt 1 ];then
-		awk '/return/{c++;if(c==1){printf "\n"; c=0}} 1' .annex/main_test.c > .annex/tmp
-		cat .annex/tmp > .annex/main_test.c
+		awk '/return/{c++;if(c==1){printf "\n"; c=0}} 1' .annex/real_printf.c > .annex/tmp
+		cat .annex/tmp > .annex/real_printf.c
 	fi
 	awk -v input="$input_pf" -v name="$var_name" '
 	/return/ {
 	c++
 	if(c==1) {
-		printf "\tprintf(\"%s\", %s);\n", input, name
+		printf "\tft_printf(\"%s\", %s);\n", input, name
 		c=1
 	}
 }
-1 { print }' .annex/main_test.c > .annex/tmp
-cat .annex/tmp > .annex/main_test.c
+1 { print }' .annex/real_printf.c > .annex/tmp
+cat .annex/tmp > .annex/real_printf.c
 i=$[$i + 1]
 done
 
-sed -i '' 's/%[diouxXfpcs]/&\\n/g' .annex/main_test.c
+sed -i '' 's/%[diouxXfpcs]/&\\n/g' .annex/real_printf.c
 
 while true; do
 	read -p "Do you also want to generate random flags, options, width... for your variables? [y/n] " yn
@@ -118,13 +118,13 @@ while true; do
 	read -p "Do you want to have colors in the printing? [y/n] " yn
 	case $yn in
 		[Yy]* ) break;;
-		[Nn]* ) sed -i '' 's/"_END"//g' .annex/main_test.c
-				sed -i '' 's/"_RED"//g' .annex/main_test.c
-				sed -i '' 's/"_CYAN"//g' .annex/main_test.c
-				sed -i '' 's/"_MAGENTA"//g' .annex/main_test.c
+		[Nn]* ) sed -i '' 's/"_END"//g' .annex/real_printf.c
+				sed -i '' 's/"_RED"//g' .annex/real_printf.c
+				sed -i '' 's/"_CYAN"//g' .annex/real_printf.c
+				sed -i '' 's/"_MAGENTA"//g' .annex/real_printf.c
 		   		break;;
 		* ) echo "Please answer yes or no, no joke this time";;
 	esac
 done
-rm .annex/tmp
+
 echo "Your test is now ready, gl hf"

@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 19:51:24 by aboitier          #+#    #+#              #
-#    Updated: 2019/02/11 21:05:31 by aboitier         ###   ########.fr        #
+#    Updated: 2019/02/17 06:56:37 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,13 @@ DFLAGS = -Wall -Wextra -Werror -fsanitize=address,undefined -g3 -pedantic\
 
 #CFLAGS = $(DFLAGS)
 
-LIB_PATH = ./libft
 A_PATH = ./.annex
 
+LIB_PATH = ./libft
 LIBFT = $(LIB_PATH)/libft.a
+
+SRCS_PATH = ./files/srcs
+SRCS = $(SRCS_PATH)/check.c $(SRCS_PATH)/init.c $(SRCS_PATH)/ft_printf.c
 
 ###################
 #				  #
@@ -65,18 +68,25 @@ re : fclean all
 REAL = printf
 MINE = ft_printf
 
+MAIN_TEST = $(A_PATH)/main_test.c
+
 randomt :
 	@sh .annex/modify/pct_conv.sh	
 	@$(MAKE) -C $(LIB_PATH)
-	@$(CC) $(LIBFT) $(A_PATH)/real_printf.c -o $(REAL)
+	@$(CC) $(LIBFT) $(MAIN_TEST) -o $(REAL)
 	@echo "$(GREEN)\tREAL PRINTF$(END)" 
 	@./$(REAL)
-	@#./$(NAME) $(1)
 
 #ifeq (ptest2,$(firstword $(MAKECMDGOALS)))
 #  PTEST_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 # 	 $(eval $RGS):;@:)
 #endif
+
+diff : randomt
+	@sed -i '' 's/printf/ft_printf/g' $(MAIN_TEST)
+	@$(CC) $(LIBFT) $(SRCS) $(MAIN_TEST) -o $(MINE)
+	@echo "$(BBLUE)\t MY PRINTF$(END)"
+	@./$(MINE)
 
 #############
 #			#
@@ -88,8 +98,9 @@ RED     = \x1b[31m
 GREEN   = \x1b[32m
 YELLOW  = \x1b[33m
 BLUE	= \x1b[34m
+BBLUE	= \x1b[1;34m
 MAGENTA	= \x1b[35m
 CYAN	= \x1b[36m
 END     = \x1b[0m
 
-.PHONY: ptest2
+.PHONY: all clean fclean re randomt diff

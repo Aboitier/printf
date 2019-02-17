@@ -6,11 +6,11 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:38:04 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/17 04:52:35 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/17 05:15:55 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../includes/head.h"
 #include <stdio.h>
 
 t_ptf		*ft_count_pct(const char *format, t_ptf **head)
@@ -20,24 +20,13 @@ t_ptf		*ft_count_pct(const char *format, t_ptf **head)
 	int	position;
 	t_ptf	*word;
 	
-// garder un pointeur de tete pour ne pas perdre les words
 	i = -1;
 	position = 0;
 	pct_count = 0;
 	while (format[++i])
-	{
 		if (format[i] == '%')
-		{		
-			position = ft_auscultate(format + i + 1);
-			if (position != -1)
-			{
-				pct_count++;
-				doctor((char*)format + i + 1, pct_count, position, head);
-				printf("word->symptoms%d %s\n", (*head)->rank, (*head)->symptoms);
-			}
-		}
-	}
-	printf("format = %s\n", format);
+			if ((position = ft_auscultate(format + i + 1)) != -1)
+				doctor((char*)format + i + 1, ++pct_count, position, head);
 	if (!pct_count)
 		return (0);
 	(*head)->total_pct_count = pct_count;
@@ -74,6 +63,7 @@ int		ft_auscultate(const char *patient)
 **	inits t_ptf struct once a valid % has been found
 **
 */
+
 int		doctor(char *format, int rank, int position, t_ptf **percents)
 {
 	int		i;

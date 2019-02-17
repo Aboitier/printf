@@ -6,14 +6,14 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 21:00:25 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/17 04:51:54 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/17 05:47:20 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEAD_H
 # define HEAD_H
 
-#include "../libft/libft.h"
+#include "../../libft/libft.h"
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -54,7 +54,7 @@ t_ptf		*ft_count_pct(const char *format, t_ptf **head);
 t_ptf		*init_head(t_ptf *head);
 int		init_conv(t_ptf **percents, int rank, char *symptoms, char conv);
 int		doctor(char *format, int rank, int position, t_ptf **percents);
-
+void	print_info(t_ptf *percents);
 int		ft_printf(const char *format, ...);
 
 

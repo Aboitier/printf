@@ -1,45 +1,29 @@
 #include <stdio.h>
-//#include "../printf_files/head.h"
+#include "../files/includes/head.h"
 
 
-int     main(void)
+int	main (void)
 {
-	double f92 = 15906;
-	double f91 = -5440;
-	double f90 = -11373;
-	double f82 = -11279;
-	double f81 = 10221;
-	double f80 = 15941;
-	double f72 = 6142;
-	double f71 = -9008;
-	double f70 = -11930;
-	double f62 = 1483;
-	double f61 = -8828;
-	double f60 = -2410;
-	double f53 = -4769;
-	double f52 = -3387;
-	double f51 = -63;
-	double f50 = 13027;
-	double f40 = 15215;
-	double f32 = -9466;
-	double f31 = -11126;
-	double f30 = 15817;
-	double f21 = 1539;
-	double f20 = 7514;
-	double f12 = 57;
-	double f11 = 11813;
-	double f10 = 9356;
-	double f00 = 11620;
+	char c41 = 'c';
+	int d40 = 1119;
+	unsigned int o33 = 5831;
+	unsigned int o32 = 25171;
+	unsigned int X31 = 23490;
+	unsigned int x30 = 3150;
+	char c23 = 'o';
+	unsigned int X22 = 15177;
+	int d21 = -9459;
+	unsigned int o20 = 4924;
+	unsigned int u13 = 17666;
+	int i12 = -490;
+	int d11 = 8197;
+	unsigned int x10 = 22685;
+	char str00[400] = "Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx.";
 
-	printf(""_RED"f"_END" "_MAGENTA"11620"_END" >"_CYAN"+l"_END"<; = %+lf\n", f00);
-	printf(""_RED"f"_END" "_MAGENTA"9356;"_END" = %f\n"_RED"f"_END" "_MAGENTA"11813"_END" >"_CYAN"+.1l"_END"<; = %+.1lf\n"_RED"f"_END" "_MAGENTA"57;"_END" = %f\n", f10,f11,f12);
-	printf(""_RED"f"_END" "_MAGENTA"7514"_END" >"_CYAN""_END"<; = %f\n"_RED"f"_END" "_MAGENTA"1539;"_END" = %f\n", f20,f21);
-	printf(""_RED"f"_END" "_MAGENTA"15817"_END" >"_CYAN"#5L"_END"<; = %#5Lf\n"_RED"f"_END" "_MAGENTA"-11126;"_END" = %f\n"_RED"f"_END" "_MAGENTA"-9466"_END" >"_CYAN" .50l"_END"<; = % .50lf\n", f30,f31,f32);
-	printf(""_RED"f"_END" "_MAGENTA"15215;"_END" = %f\n", f40);
-	printf(""_RED"f"_END" "_MAGENTA"13027"_END" >"_CYAN"-.24l"_END"<; = %-.24lf\n"_RED"f"_END" "_MAGENTA"-63;"_END" = %f\n"_RED"f"_END" "_MAGENTA"-3387"_END" >"_CYAN""_END"<; = %f\n"_RED"f"_END" "_MAGENTA"-4769;"_END" = %f\n", f50,f51,f52,f53);
-	printf(""_RED"f"_END" "_MAGENTA"-2410"_END" >"_CYAN"+5.2l"_END"<; = %+5.2lf\n"_RED"f"_END" "_MAGENTA"-8828;"_END" = %f\n"_RED"f"_END" "_MAGENTA"1483"_END" >"_CYAN""_END"<; = %f\n", f60,f61,f62);
-	printf(""_RED"f"_END" "_MAGENTA"-11930;"_END" = %f\n"_RED"f"_END" "_MAGENTA"-9008"_END" >"_CYAN"#8.9l"_END"<; = %#8.9lf\n"_RED"f"_END" "_MAGENTA"6142;"_END" = %f\n", f70,f71,f72);
-	printf(""_RED"f"_END" "_MAGENTA"15941"_END" >"_CYAN""_END"<; = %f\n"_RED"f"_END" "_MAGENTA"10221;"_END" = %f\n"_RED"f"_END" "_MAGENTA"-11279"_END" >"_CYAN" 5.38l"_END"<; = % 5.38lf\n", f80,f81,f82);
-	printf(""_RED"f"_END" "_MAGENTA"-11373;"_END" = %f\n"_RED"f"_END" "_MAGENTA"-5440"_END" >"_CYAN"-3.8L"_END"<; = %-3.8Lf\n"_RED"f"_END" "_MAGENTA"15906;"_END" = %f\n", f90,f91,f92);
+	printf("s Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx. = %s\n", str00);
+	printf(""_BBLUE"x"_END" "_MAGENTA"22685"_END" >"_CYAN""_END"<; = %x\n"_BBLUE"d"_END" "_MAGENTA"8197;"_END" = %d\n"_BBLUE"i"_END" "_MAGENTA"-490"_END" >"_RED"3.15"_END"<; = %3.15i\n"_BBLUE"u"_END" "_MAGENTA"17666;"_END" = %u\n", x10,d11,i12,u13);
+	printf(""_BBLUE"o"_END" "_MAGENTA"4924"_END" >"_RED"l"_END"<; = %lo\n"_BBLUE"d"_END" "_MAGENTA"-9459;"_END" = %d\n"_BBLUE"X"_END" "_MAGENTA"15177"_END" >"_RED""_END"<; = %X\n"_BBLUE"c"_END" "_MAGENTA"'o';"_END" = %c\n", o20,d21,X22,c23);
+	printf(""_BBLUE"x"_END" "_MAGENTA"3150"_END" >"_RED".41"_END"<; = %.41x\n"_BBLUE"X"_END" "_MAGENTA"23490;"_END" = %X\n"_BBLUE"o"_END" "_MAGENTA"25171"_END" >"_CYAN""_END"<; = %o\n"_BBLUE"o"_END" "_MAGENTA"5831;"_END" = %o\n", x30,X31,o32,o33);
+	printf(""_BBLUE"d"_END" "_MAGENTA"1119"_END" >"_RED"-.18"_END"<; = %-.18d\n"_BBLUE"c"_END" "_MAGENTA"'c';"_END" = %c\n", d40,c41);
 	return (0);
 }

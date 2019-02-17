@@ -6,11 +6,11 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:18:44 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/17 04:52:09 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/17 05:11:29 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "head.h"
+#include "../includes/head.h"
 
 //pct		
 
@@ -23,8 +23,9 @@ t_ptf		*init_head(t_ptf *head)
 	percents->options = NULL;
 	percents->precision = NULL;
 	percents->symptoms = NULL;
-	percents->next = NULL;
+	percents->total_pct_count = 0;
 	percents->rank = 0;
+	percents->next = NULL;
 	return (percents);
 }
 
