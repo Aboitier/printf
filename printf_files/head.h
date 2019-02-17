@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 21:00:25 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/15 17:20:10 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/17 04:51:54 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ typedef struct 	s_ftprintf
 	int					width;
 	char				*precision;
 	char				*symptoms;
+	int					total_pct_count;
 	struct s_ftprintf	*next;
-}				ptf;
+}				t_ptf;
 
 /************
 *			*
@@ -48,11 +49,11 @@ typedef struct 	s_ftprintf
 # define _CYAN   	"\x1b[36m"
 # define _END  	 	"\x1b[0m"
 
-int		ft_auscultate(const char *patient, ptf *head);
-ptf		*ft_count_pct(const char *format, ptf *head);
-ptf		*init_head(ptf *head);
-ptf		*init_conv(ptf *pct, int rank, char *symptoms);
-ptf		*doctor(char *format, int rank, int position, ptf *word);
+int		ft_auscultate(const char *patient);
+t_ptf		*ft_count_pct(const char *format, t_ptf **head);
+t_ptf		*init_head(t_ptf *head);
+int		init_conv(t_ptf **percents, int rank, char *symptoms, char conv);
+int		doctor(char *format, int rank, int position, t_ptf **percents);
 
 int		ft_printf(const char *format, ...);
 

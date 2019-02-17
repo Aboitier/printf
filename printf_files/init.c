@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:18:44 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/15 17:16:48 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/17 04:52:09 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,31 @@
 
 //pct		
 
-ptf		*init_head(ptf *head)
+t_ptf		*init_head(t_ptf *head)
 {
-	ptf *percents;
+	t_ptf *percents;
 	
-	if (!(percents = (ptf*)malloc(sizeof(ptf))))
+	if (!(percents = (t_ptf*)malloc(sizeof(t_ptf))))
 		return (0);
 	percents->options = NULL;
 	percents->precision = NULL;
 	percents->symptoms = NULL;
 	percents->next = NULL;
+	percents->rank = 0;
 	return (percents);
 }
 
-ptf		*init_conv(ptf *percents, int rank, char *symptoms)
+int		init_conv(t_ptf **percents, int rank, char *symptoms, char conv)
 {
-	ptf *word;
-	while (percents->next != NULL)
-		percents->next = percents->next->next;
-	word = percents->next;	
-	if (!(word = (ptf*)malloc(sizeof(ptf))))
+	t_ptf *word;
+
+	word = (*percents)->next;
+	while (word->next != NULL)
+		word = word->next;
+	if (!((word->next) = (t_ptf*)malloc(sizeof(t_ptf))))
 		return (0);
-	word->conv = '\0';
+	word = word->next;
+	word->conv = conv;
 	if (symptoms)
 	{
 		word->symptoms = (char*)ft_memalloc(ft_strlen(symptoms) + 1);
@@ -43,8 +46,5 @@ ptf		*init_conv(ptf *percents, int rank, char *symptoms)
 	}
 	word->rank = rank;
 	word->next = NULL;
-	return (word);
+	return (0);
 }
-
-// tester si on se trouve sur la bonne structure
-// tester le rank 

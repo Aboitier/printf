@@ -6,19 +6,19 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:38:04 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/15 17:17:35 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/17 04:52:35 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "head.h"
 #include <stdio.h>
 
-ptf		*ft_count_pct(const char *format, ptf *head)
+t_ptf		*ft_count_pct(const char *format, t_ptf **head)
 {
 	int i;
 	int pct_count;
 	int	position;
-	ptf	*word;
+	t_ptf	*word;
 	
 // garder un pointeur de tete pour ne pas perdre les words
 	i = -1;
@@ -28,18 +28,19 @@ ptf		*ft_count_pct(const char *format, ptf *head)
 	{
 		if (format[i] == '%')
 		{		
-			position = ft_auscultate(format + i + 1, head);
+			position = ft_auscultate(format + i + 1);
 			if (position != -1)
 			{
 				pct_count++;
-				word = doctor((char*)format + i + 1, pct_count, position, word);
-//				printf("word->symptoms%d %s\n", pct_count, word->symptoms);
+				doctor((char*)format + i + 1, pct_count, position, head);
+				printf("word->symptoms%d %s\n", (*head)->rank, (*head)->symptoms);
 			}
 		}
 	}
 	printf("format = %s\n", format);
 	if (!pct_count)
 		return (0);
+	(*head)->total_pct_count = pct_count;
 	return (word);
 }
 
@@ -47,7 +48,7 @@ ptf		*ft_count_pct(const char *format, ptf *head)
 ** counts number of valid % 
 */
 
-int		ft_auscultate(const char *patient, ptf *head)
+int		ft_auscultate(const char *patient)
 {
 	int		i;
 	int		j;
@@ -69,19 +70,30 @@ int		ft_auscultate(const char *patient, ptf *head)
 	return (-1);
 }
 
-ptf	*doctor(char *format, int rank, int position, ptf *word)
+/*
+**	inits t_ptf struct once a valid % has been found
+**
+*/
+int		doctor(char *format, int rank, int position, t_ptf **percents)
 {
 	int		i;
 	int		j;
 	char	*symptoms;
 	
 	i = 0;
-//	printf("doctor position = %d\n", position);
+
 	symptoms = ft_strsub(format, i, position);
-//	printf("doctor symptoms = %s\n", symptoms);
-	word = init_conv(word, rank, symptoms);
-	word->conv = format[position];
-//	printf("doctor conv = %c\n", word->conv);
-//	printf("doctor rank = %d\n", word->rank);
-	return (word);
+	if ((*percents)->next == NULL)
+ 	{
+	      if (!((*percents)->next = (t_ptf*)malloc(sizeof(t_ptf))))
+		          return (0);
+	     (*percents)->next->rank = rank;
+	     (*percents)->next->symptoms = symptoms;
+	     (*percents)->next->conv = format[position];
+	     (*percents)->next->next = NULL;
+	     return (1);
+	}
+	else
+		init_conv(percents, rank, symptoms, format[position]);
+	return (1);
 }

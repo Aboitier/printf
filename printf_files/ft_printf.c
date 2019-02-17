@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:55:34 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/15 17:20:48 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/17 04:52:21 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@ int	ft_printf(const char *format, ...)
 	int val;
 	int i;
 	int	pct_count;
-	ptf *percents;
+	t_ptf *percents;
 	va_list ap;
 
 	val = 0;
 	i = -1;
 	percents = init_head(percents);
-	percents = ft_count_pct(format, percents);
-	//printf("%d\n", pct_count);
+	ft_count_pct(format, &percents);
+	printf("%d\n", percents->total_pct_count);
+	printf("%c\n", percents->next->conv);
+	printf("%s\n", percents->next->symptoms);
 	va_start(ap, format);
 	pct_count = 6;
-	while (i++ < pct_count)
+	while (i++ < percents->total_pct_count)
 		val+= va_arg(ap, int);
 	
 	va_end(ap);
@@ -57,7 +59,6 @@ int main(void)
 
 	int i = 3, d = 4, c = 5;
 	sum(4, 4, 20, 25, 30);
-	ft_printf("Le temps est %ab11d% beau, %d%d, %d, %c", i, d, c); 
-	printf("hey\n");
+	ft_printf("Le temps est %ab11d% beau, %123d%d, %d, %c", i, d, c); 
 	return 0;
 }
