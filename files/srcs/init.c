@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/12 15:18:44 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/17 05:11:29 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/18 04:15:51 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ int		init_conv(t_ptf **percents, int rank, char *symptoms, char conv)
 	}
 	word->rank = rank;
 	word->next = NULL;
-	return (0);
+	return (1);
 }

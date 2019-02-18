@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 19:51:24 by aboitier          #+#    #+#              #
-#    Updated: 2019/02/17 06:56:37 by aboitier         ###   ########.fr        #
+#    Updated: 2019/02/18 22:17:11 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LIB_PATH = ./libft
 LIBFT = $(LIB_PATH)/libft.a
 
 SRCS_PATH = ./files/srcs
-SRCS = $(SRCS_PATH)/check.c $(SRCS_PATH)/init.c $(SRCS_PATH)/ft_printf.c
+SRCS = $(SRCS_PATH)/check.c $(SRCS_PATH)/init.c $(SRCS_PATH)/ft_printf.c $(SRCS_PATH)/cure.c
 
 ###################
 #				  #
@@ -46,7 +46,7 @@ SRCS = $(SRCS_PATH)/check.c $(SRCS_PATH)/init.c $(SRCS_PATH)/ft_printf.c
 all : $(NAME)
 	
 $(NAME) : $(HEAD)
-			@$(MAKE) -C $(LIB_PATH)
+		@$(MAKE) -C $(LIB_PATH)
 			
 clean :
 		@$(MAKE) clean -C $(LIB_PATH)
@@ -59,6 +59,13 @@ fclean : clean
 
 re : fclean all
 
+run : 
+	@$(MAKE) -C $(LIB_PATH)
+	@$(CC) $(SRCS) $(LIBFT) $(MAIN_TEST) -o $(NAME)
+	@clear
+	@echo "\t$(BBLUE)O$(END)U$(RED)T$(END)$(BBLUE)P$(END)U$(RED)T$(END)"
+	@./$(NAME)
+
 #############
 #			#
 #   TEST 	#
@@ -70,23 +77,36 @@ MINE = ft_printf
 
 MAIN_TEST = $(A_PATH)/main_test.c
 
-randomt :
-	@sh .annex/modify/pct_conv.sh	
+trandom :
+	@sh .annex/modify/pct_conv.sh $(nb)	
 	@$(MAKE) -C $(LIB_PATH)
 	@$(CC) $(LIBFT) $(MAIN_TEST) -o $(REAL)
 	@echo "$(GREEN)\tREAL PRINTF$(END)" 
 	@./$(REAL)
 
-#ifeq (ptest2,$(firstword $(MAKECMDGOALS)))
-#  PTEST_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
-# 	 $(eval $RGS):;@:)
-#endif
+ifeq (ptest2,$(firstword $(MAKECMDGOALS)))
+  PTEST_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+ 	 $(eval $RGS):;@:)
+endif
 
-diff : randomt
+tdiff : trandom
 	@sed -i '' 's/printf/ft_printf/g' $(MAIN_TEST)
 	@$(CC) $(LIBFT) $(SRCS) $(MAIN_TEST) -o $(MINE)
 	@echo "$(BBLUE)\t MY PRINTF$(END)"
 	@./$(MINE)
+
+catmain :
+	@cat $(MAIN_TEST) | sed 's/\"_BBLUE\"//g' | sed 's/\"_RED\"//g' | sed 's/\"_END\"//g' | sed 's/\"_MAGENTA\"//g' | sed 's/\"_CYAN\"//g' | grep printf
+
+removecol :
+	@sed -i '' 's/\"_BBLUE\"//g' 	.annex/main_test.c
+	@sed -i '' 's/\"_RED\"//g'		.annex/main_test.c
+	@sed -i '' 's/\"_END\"//g'		.annex/main_test.c
+	@sed -i '' 's/\"_MAGENTA\"//g'	.annex/main_test.c
+	@sed -i '' 's/\"_CYAN\"//g'		.annex/main_test.c
+
+greppct:
+	@grep -o -E "%.{1,6}" $(MAIN_TEST)
 
 #############
 #			#

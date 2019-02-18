@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:55:34 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/17 05:48:27 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/19 00:10:24 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ int	ft_printf(const char *format, ...)
 	i = -1;
 	percents = init_head(percents);
 	ft_count_pct(format, &percents);
-	print_info(percents);
 	va_start(ap, format);
+	// add function to input va_arg into struct
+	cure(percents, (char *)format, ap);
+	print_info(percents);
 	while (i++ < percents->total_pct_count)
 		val+= va_arg(ap, int);
 
@@ -51,9 +53,13 @@ int sum(int num_args, ...)
 void	print_info(t_ptf *percents)
 {
 	percents = percents->next;
+	printf("\n");
 	while (percents)
 	{
-		printf("\t%%"_GREEN"%d"_END" "_BBLUE"%c"_END" conv symptoms "_RED"%s"_END"\n", percents->rank, percents->conv, percents->symptoms);
+		printf("\t%%"_GREEN"%d"_END"", percents->rank);
+		printf("  conv: "_BBLUE"%c"_END, percents->conv);
+		printf(" -pos '%%' dans format: "_YELLOW"%d"_END"  ", percents->pos);
+		printf("\tsymptoms:"_RED"%s\n"_END, percents->symptoms); 
 		percents = percents->next;
 	}
 }

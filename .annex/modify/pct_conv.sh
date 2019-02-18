@@ -3,57 +3,12 @@
 #
 ### CLEANING
 #
-sed -i '' "/;/d" .annex/main_test.c
-sed -i '' '/^[[:space:]]*$/d' .annex/main_test.c
-awk -v n=3 -v s="\n" 'NR == n {print s} {print}' .annex/main_test.c > .annex/tmp
-cat .annex/tmp > .annex/main_test.c
-perl -0777 -pe 's {\{} {$&\n\treturn (0);}g' .annex/main_test.c > .annex/tmp
-cat .annex/tmp > .annex/main_test.c
+	. .annex/modify/cleaning/clean.sh
 #
 ### SETTING UP
 #
-re='^[0-9]+$'
-i=0
-choice=""
-echo "Hi, how many printf lines do you want?"
-
-read line_nb
-
-if ! [[ $line_nb =~ "$re" ]];then
-	while ! [[ $line_nb =~ $re ]]; do
-		if [[ $i = 0 ]];then 
-			echo "That was not correct, please input a number between 0 and 5 (or more)"
-		elif [[ $i = 1 ]];then
-			echo "can you read English?"
-		elif [[ $i = 2 ]];then
-			echo "you life is a lie and your mum a b****"
-		elif [[ $i = 3 ]];then
-			echo "just fcking get lost, DISAPPEAR!! YOURE NOT WORTH MY TIME"
-		elif [[ $i -gt 3 ]];then
-			echo "..................."
-		fi
-		read line_nb
-		i=$[$i+1]
-	done
-fi
-
-while true; do
-    read -p "Would you like to choose a specific conversion indicator or go full random? [choose/random] " yn
-    case $yn in
-        [Cc]* ) echo "Choose a conversion indicator among \"d, i, o, u, x, X, f, c, s, p\""
-			    read choice
-				if ! [[ $choice = ["diouxXfcsp"] ]];then
-					while ! [[ $choice = ["diouxXfcsp"] ]];do
-						echo "Choose a conversion indicator among \"d, i, o, u, x, X, f, c, s, p\"."
-						read choice
-					done
-				fi
-				echo "Thanks. $line_nb lines have been set up with the $choice conversion indicator."; break;;	
-        [Rr]* ) echo "Thank you. $line_nb lines have been set up."; break;;
-		* ) echo "Please answer choose or random, no joke this time";;
-    esac
-done
-
+	. .annex/modify/prompt/line_nb.sh
+	. .annex/modify/prompt/conv_choice.sh
 #
 ### INPUTTING
 #
@@ -66,7 +21,11 @@ do
 	j=0
 	input_pf=""
 	var_name=""
-	pct_nb=$[ ( RANDOM % 4 ) + 1]
+	if ! [[ $1 ]]; then
+		pct_nb=$[ ( RANDOM % 4 ) + 1]
+	else 
+		pct_nb=$1
+	fi
 	while [ "$j" -lt "$pct_nb" ]
 	do
 		var_index="$i$j"
@@ -106,25 +65,8 @@ done
 
 sed -i '' 's/%[diouxXfpcs]/&\\n/g' .annex/main_test.c
 
-while true; do
-	read -p "Do you also want to generate random flags, options, width... for your variables? [y/n] " yn
-	case $yn in
-		[Yy]* ) sh .annex/modify/change_flags.sh; break;;
-		[Nn]* ) break;;
-		* ) echo "Please answer yes or no, no joke this time";;
-	esac
-done
-while true; do
-	read -p "Do you want to have colors in the printing? [y/n] " yn
-	case $yn in
-		[Yy]* ) break;;
-		[Nn]* ) sed -i '' 's/"_END"//g' .annex/main_test.c
-				sed -i '' 's/"_RED"//g' .annex/main_test.c
-				sed -i '' 's/"_CYAN"//g' .annex/main_test.c
-				sed -i '' 's/"_MAGENTA"//g' .annex/main_test.c
-		   		break;;
-		* ) echo "Please answer yes or no, no joke this time";;
-	esac
-done
+	. .annex/modify/prompt/flags_or_not.sh
+	. .annex/modify/prompt/colors.sh
 rm .annex/tmp
+
 echo "Your test is now ready, gl hf"

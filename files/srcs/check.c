@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:38:04 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/17 05:15:55 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/18 04:46:06 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ t_ptf		*ft_count_pct(const char *format, t_ptf **head)
 	while (format[++i])
 		if (format[i] == '%')
 			if ((position = ft_auscultate(format + i + 1)) != -1)
+			{
 				doctor((char*)format + i + 1, ++pct_count, position, head);
+				add_pct_pos(head, i);
+			}
 	if (!pct_count)
 		return (0);
 	(*head)->total_pct_count = pct_count;
@@ -61,18 +64,13 @@ int		ft_auscultate(const char *patient)
 
 /*
 **	inits t_ptf struct once a valid % has been found
-**
 */
 
 int		doctor(char *format, int rank, int position, t_ptf **percents)
 {
-	int		i;
-	int		j;
 	char	*symptoms;
-	
-	i = 0;
 
-	symptoms = ft_strsub(format, i, position);
+	symptoms = ft_strsub(format, 0, position);
 	if ((*percents)->next == NULL)
  	{
 	      if (!((*percents)->next = (t_ptf*)malloc(sizeof(t_ptf))))
@@ -85,5 +83,20 @@ int		doctor(char *format, int rank, int position, t_ptf **percents)
 	}
 	else
 		init_conv(percents, rank, symptoms, format[position]);
+	return (1);
+}
+
+/*
+**	adds the position of the % in format into the corresponding t_ptf
+*/
+
+int		add_pct_pos(t_ptf **percents, int pos)
+{
+	t_ptf *word;
+
+	word = (*percents)->next;
+	while (word->next != NULL)
+		word = word->next;
+	word->pos = pos;
 	return (1);
 }
