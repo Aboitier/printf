@@ -4,17 +4,17 @@
 
 int	main (void)
 {
-	int d09 = 1985;
-	int d08 = 8182;
-	int d07 = -12670;
-	int d06 = 9596;
-	int d05 = -12103;
-	int d04 = 8953;
-	int d03 = 7832;
-	int d02 = -6270;
-	int d01 = -3931;
-	int d00 = 8658;
+	int i09 = 6971;
+	char c08 = 'c';
+	void *ptr07 = NULL;
+	int d06 = -14665;
+	unsigned int o05 = 23330;
+	unsigned int x04 = 28265;
+	int d03 = 14820;
+	double f02 = -7249;
+	unsigned int u01 = 32543;
+	unsigned int X00 = 394;
 
-	printf(""_BBLUE"d"_END" "_MAGENTA"8658"_END" >"_RED"h"_END"<; = %hd\n"_BBLUE"d"_END" "_MAGENTA"-3931;"_END" = %d\n"_BBLUE"d"_END" "_MAGENTA"-6270"_END" >"_RED"+13.7ll"_END"<; = %+13.7lld\n"_BBLUE"d"_END" "_MAGENTA"7832;"_END" = %d\n"_BBLUE"d"_END" "_MAGENTA"8953"_END" >"_RED""_END"<; = %d\n"_BBLUE"d"_END" "_MAGENTA"-12103;"_END" = %d\n"_BBLUE"d"_END" "_MAGENTA"9596"_END" >"_RED"+9.2h"_END"<; = %+9.2hd\n"_BBLUE"d"_END" "_MAGENTA"-12670;"_END" = %d\n"_BBLUE"d"_END" "_MAGENTA"8182"_END" >"_RED"#2.8"_END"<; = %#2.8d\n"_BBLUE"d"_END" "_MAGENTA"1985;"_END" = %d\n", d00,d01,d02,d03,d04,d05,d06,d07,d08,d09);
+	printf(""_BBLUE"X"_END" "_MAGENTA"394"_END" >"_RED".4hh"_END"<; = %.4hhX\n"_BBLUE"u"_END" "_MAGENTA"32543;"_END" = %u\n"_BBLUE"f"_END" "_MAGENTA"-7249"_END" >"_RED"-10.36ll"_END"<; = %-10.36llf\n"_BBLUE"d"_END" "_MAGENTA"14820;"_END" = %d\n"_BBLUE"x"_END" "_MAGENTA"28265"_END" >"_RED""_END"<; = %x\n"_BBLUE"o"_END" "_MAGENTA"23330;"_END" = %o\n"_BBLUE"d"_END" "_MAGENTA"-14665"_END" >"_RED"-.27h"_END"<; = %-.27hd\n"_BBLUE"p"_END" "_MAGENTA"NULL;"_END" = %p\n"_BBLUE"c"_END" "_MAGENTA"'c'"_END" >"_RED"2l"_END"<; = %2lc\n"_BBLUE"i"_END" "_MAGENTA"6971;"_END" = %i\n", X00,u01,f02,d03,x04,o05,d06,ptr07,c08,i09);
 	return (0);
 }
