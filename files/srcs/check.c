@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/14 03:38:04 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/18 04:46:06 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/22 05:25:42 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,14 @@ int		doctor(char *format, int rank, int position, t_ptf **percents)
 	      if (!((*percents)->next = (t_ptf*)malloc(sizeof(t_ptf))))
 		          return (0);
 	     (*percents)->next->rank = rank;
+		 (*percents)->next->symptoms = NULL;
 	     (*percents)->next->symptoms = symptoms;
 	     (*percents)->next->conv = format[position];
+		 (*percents)->next->type = NULL;
+		 (*percents)->next->options = NULL;
+		 (*percents)->next->width = 0;
+		 (*percents)->next->precision = 0;
+		 (*percents)->next->flags = NULL;
 	     (*percents)->next->next = NULL;
 	     return (1);
 	}

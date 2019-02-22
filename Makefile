@@ -6,7 +6,7 @@
 #    By: aboitier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/24 19:51:24 by aboitier          #+#    #+#              #
-#    Updated: 2019/02/18 22:17:11 by aboitier         ###   ########.fr        #
+#    Updated: 2019/02/22 05:27:24 by aboitier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ LIB_PATH = ./libft
 LIBFT = $(LIB_PATH)/libft.a
 
 SRCS_PATH = ./files/srcs
-SRCS = $(SRCS_PATH)/check.c $(SRCS_PATH)/init.c $(SRCS_PATH)/ft_printf.c $(SRCS_PATH)/cure.c
+SRCS = $(SRCS_PATH)/check.c $(SRCS_PATH)/init.c $(SRCS_PATH)/ft_printf.c $(SRCS_PATH)/get_type.c #$(SRCS_PATH)/cure.c 
 
 ###################
 #				  #
@@ -107,6 +107,12 @@ removecol :
 
 greppct:
 	@grep -o -E "%.{1,6}" $(MAIN_TEST)
+
+toftptf:
+	@sed -i '' 's/printf/ft_printf/g' $(MAIN_TEST)
+toptf:
+	@sed -i '' 's/ft_printf/printf/g' $(MAIN_TEST)
+
 
 #############
 #			#

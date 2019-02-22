@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/13 19:55:34 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/19 00:10:24 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/22 05:57:01 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ int	ft_printf(const char *format, ...)
 	percents = init_head(percents);
 	ft_count_pct(format, &percents);
 	va_start(ap, format);
+	blood_test(&percents, ap);
 	// add function to input va_arg into struct
-	cure(percents, (char *)format, ap);
-	print_info(percents);
+	//cure(percents, (char *)format, ap);
+	//global_info(percents);
 	while (i++ < percents->total_pct_count)
 		val+= va_arg(ap, int);
 
@@ -50,7 +51,18 @@ int sum(int num_args, ...)
 	return val;
 }
 
-void	print_info(t_ptf *percents)
+void	word_info(t_ptf *word)
+{
+	printf("rank = %d conv = %c\n", word->rank, word->conv);
+	printf("symptoms =%s\n", word->symptoms);
+	printf("options = %s\n", word->options);
+	printf("width = %lu\n", word->width);
+	printf("precision = %lu\n", word->precision);
+	printf("flags = %s\n", word->flags);
+	printf("\n");
+}
+
+void	global_info(t_ptf *percents)
 {
 	percents = percents->next;
 	printf("\n");
@@ -58,8 +70,13 @@ void	print_info(t_ptf *percents)
 	{
 		printf("\t%%"_GREEN"%d"_END"", percents->rank);
 		printf("  conv: "_BBLUE"%c"_END, percents->conv);
-		printf(" -pos '%%' dans format: "_YELLOW"%d"_END"  ", percents->pos);
-		printf("\tsymptoms:"_RED"%s\n"_END, percents->symptoms); 
+		printf(" -pos '%%' dans format: "_YELLOW"%d"_END"  \n", percents->pos);
+		printf("\tsymptoms:"_RED"%s "_END, percents->symptoms);
+	   	printf("\toptions:"_RED"'%s'\n"_END, percents->options);	
+	   	printf("\twdith:"_RED"'%lu'\n"_END, percents->width);	
+		printf("\tprecision:"_RED"'%lu\n"_END, percents->precision);
+		printf("\tflags:"_RED"'%s\n\n"_END, percents->flags);
+		
 		percents = percents->next;
 	}
 }

@@ -11,6 +11,6 @@ elif [  \( "$rand" == 3 \) ];then
 elif [  \( "$rand" == 4 \) ];then
 	flag+="ll";
 elif [  \( "$rand" == 5 \) ];then
-	flag+="";
+	flag+="L";
 fi
 export flag

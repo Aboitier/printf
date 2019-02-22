@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 21:00:25 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/18 23:49:41 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/22 07:18:23 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ typedef struct 	s_ftprintf
 	int					rank;
 	int					pos;
 	char				*options;
-	int					width;
-	char				*precision;
+	unsigned long		width;
+	unsigned long		precision;
+	char				*flags;
 	char				*symptoms;
+	char				*type;
 	int					total_pct_count;
 	struct s_ftprintf	*next;
 }				t_ptf;
@@ -48,6 +50,16 @@ int			init_conv(t_ptf **percents, int rank, char *symptoms, char conv);
 int			ft_auscultate(const char *patient);
 int			doctor(char *format, int rank, int position, t_ptf **percents);
 t_ptf		*ft_count_pct(const char *format, t_ptf **head);
+int			irm(t_ptf **percents, va_list ap);
+
+/* CHECK */
+int			blood_test(t_ptf **percents, va_list ap);
+int			get_options(t_ptf **percents, int i);
+int			get_width(t_ptf **word, int i);
+int			get_precision(t_ptf **word, int i);
+int			get_flags(t_ptf **word, int i);
+int			get_type(t_ptf **word);
+int			get_dioux_type(t_ptf **word);
 
 /* PRINT */
 int			cure(t_ptf *percents, char *format, va_list ap);
@@ -56,7 +68,8 @@ int			lobby(t_ptf **word);
 int			d_check(t_ptf **word);
 
 /* DEBUG */
-void		print_info(t_ptf *percents);
+void		global_info(t_ptf *percents);
+void		word_info(t_ptf *word);
 
 /************
 *			*

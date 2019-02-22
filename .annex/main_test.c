@@ -2,7 +2,93 @@
 #include "../files/includes/head.h"
 
 
-int	main (void)
+int		main(void)
 {
+	char str243[400] = "		1,2, salmy the salmon";
+	void *ptr242 = NULL;
+	char str241[400] = "how do you feel about this";
+	unsigned int x240 = 9225;
+	int d232 = 10633;
+	char c231 = 'c';
+	unsigned int u230 = 21631;
+	char str220[400] = "Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx.";
+	unsigned int u213 = 20818;
+	char str212[400] = "Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx.";
+	unsigned int o211 = 11289;
+	unsigned int o210 = 19089;
+	unsigned int X203 = 936;
+	unsigned int o202 = 5430;
+	int i201 = -12132;
+	double f200 = 7292;
+	unsigned int o190 = 15356;
+	int i180 = 8307;
+	unsigned int u170 = 4433;
+	double f163 = 9762;
+	unsigned int x162 = 25119;
+	unsigned int u161 = 13374;
+	unsigned int u160 = 13697;
+	int i151 = 15705;
+	unsigned int u150 = 23597;
+	unsigned int u143 = 28388;
+	int d142 = 8528;
+	int d141 = -5261;
+	unsigned int o140 = 24213;
+	double f131 = 15973;
+	void *ptr130 = NULL;
+	int i120 = -12590;
+	char str110[400] = "Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx.";
+	char str103[400] = "Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx.";
+	int d102 = 12393;
+	unsigned int X101 = 19914;
+	double f100 = -11882;
+	int d92 = -6795;
+	unsigned int x91 = 28424;
+	void *ptr90 = NULL;
+	void *ptr81 = NULL;
+	char str80[400] = "how do you feel about this";
+	char str71[400] = "Le panpsychisme est une conception philosophique selon laquelle l'esprit est une propriete ou un aspect fondamental du monde qui s'y presente partout. L'esprit se deploierait ainsi dans toute l'etendue de l'Univers.";
+	void *ptr70 = NULL;
+	unsigned int u63 = 17243;
+	unsigned int x62 = 3696;
+	unsigned int u61 = 13320;
+	unsigned int o60 = 5339;
+	unsigned int o51 = 17619;
+	unsigned int o50 = 20128;
+	char str41[400] = "how do you feel about this";
+	unsigned int x40 = 5994;
+	unsigned int u30 = 32273;
+	int i20 = 6700;
+	unsigned int x12 = 3040;
+	unsigned int u11 = 27235;
+	char str10[400] = "		1,2, salmy the salmon";
+	unsigned int u02 = 23244;
+	char c01 = 'c';
+	int d00 = 14633;
+
+	printf("d 14633 >#5.4l<; = %#5.4ld\nc 'c'; = %c\nu 23244 > ><; = %u\n", d00,c01,u02);
+	printf("s  1,2, salmy the salmon = %s\nu 27235 > 10l<; = % 10lu\nx 3040; = %x\n", str10,u11,x12);
+	printf("i 6700 ><; = %i\n", i20);
+	printf("u 32273 > 19hh ><; = % 19hhu\n", u30);
+	printf("x 5994; = %x\ns how do you feel about this = %s\n", x40,str41);
+	printf("o 20128 > >0L<; = %0Lo\no 17619 ><; = %o\n", o50,o51);
+	printf("o 5339 >#1.3L ><; = %#1.3Lo\nu 13320; = %u\nx 3696 > 4.9l ><; = % 4.9lx\nu 17243; = %u\n", o60,u61,x62,u63);
+	printf("p NULL > > 11h<; = % 11hp\ns Le panpsychisme est une conception philosophique selon laquelle l'esprit est une propriete ou un aspect fondamental du monde qui s'y presente partout. L'esprit se deploierait ainsi dans toute l'etendue de l'Univers. = %s\n", ptr70,str71);
+	printf("s how do you feel about this = %s\np NULL > >+.12hh<; = %+.12hhp\n", str80,ptr81);
+	printf("p NULL >+10l<; = %+10lp\nx 28424 >-18.3hh ><; = %-18.3hhx\nd -6795; = %d\n", ptr90,x91,d92);
+	printf("f -11882 ><; = %f\nX 19914 ><; = %X\nd 12393 >+ll >-.8L<; = %-.8L+lld\ns Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx. = %s\n", f100,X101,d102,str103);
+	printf("s Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx. = %s\n", str110);
+	printf("i -12590 >+hh<; = %+hhi\n", i120);
+	printf("p NULL ><; = %p\nf 15973; = %f\n", ptr130,f131);
+	printf("o 24213 ><; = %o\nd -5261 >+2h ><; = %+2hd\nd 8528 >+12.6L<; = %+12.6Ld\nu 28388 ><; = %u\n", o140,d141,d142,u143);
+	printf("u 23597 >#3hh ><; = %#3hhu\ni 15705; = %i\n", u150,i151);
+	printf("u 13697 ><; = %u\nu 13374 > 1.10L<; = % 1.10Lu\nx 25119 >-10ll<; = %-10llx\nf 9762 > >-.13h<; = %-.13hf\n", u160,u161,x162,f163);
+	printf("u 4433 >-9.7h<; = %-9.7hu\n", u170);
+	printf("i 8307; = %i\n", i180);
+	printf("o 15356 ><; = %o\n", o190);
+	printf("f 7292 ><; = %f\ni -12132 >010ll ><; = %010lli\no 5430 >0h<; = %0ho\nX 936 ><; = %X\n", f200,i201,o202,X203);
+	printf("o 19089 > 4L<; = % 4Lo\no 11289; = %o\ns Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx. = %s\nu 20818 ><; = %u\n", o210,o211,str212,u213);
+	printf("s Hauntology (a portmanteau of haunting and ontology[1]) is a concept coined by philosopher Jacques Derrida in his 1993 book Spectres of Marx. = %s\n", str220);
+	printf("u 21631 > >+17.10hh<; = %+17.10hhu\nc 'c' >+2l<; = %+2lc\nd 10633 ><; = %d\n", u230,c231,d232);
+	printf("x 9225 >+15.12h<; = %+15.12hx\ns how do you feel about this = %s\np NULL ><; = %p\ns  1,2, salmy the salmon = %s\n", x240,str241,ptr242,str243);
 	return (0);
 }

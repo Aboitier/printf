@@ -20,15 +20,17 @@ while true; do
 		[3]* ) selection=;
 			break;;
 		[h]* ) echo "\n";
+			echo "------------------------------------------------------------------------------------";
 			echo "[1] Quick sets up 3 to 5 printf lines with 4 printfs per line, random variables and with colors.";
 			sleep 1;
 			echo "[2] Quick10 sets up one printf line with 10 printfs inside it, random variables and with colors.";
 			sleep 1;
 			echo "[3] Customize allows you to choose the number of lines, the conversion specifier, if you want random flags and colors";
-			echo "\n";;
+			echo "-------------------------------------------------------------------------------------";
+			echo "\n";
+			sleep 2;;
 		[42]* ) . .annex/modify/options/42.sh
 	esac
 done
 
 export selection
-

@@ -6,7 +6,7 @@
 /*   By: aboitier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 18:12:21 by aboitier          #+#    #+#             */
-/*   Updated: 2019/02/19 00:10:26 by aboitier         ###   ########.fr       */
+/*   Updated: 2019/02/21 20:33:06 by aboitier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,20 @@ int		cure(t_ptf *percents, char *format, va_list ap)
 }
 
 //function to get nth variable (based on word->rank)
-
+int		irm(t_ptf **percents, va_list ap)
+{
+	t_ptf	*word;
+	int 	i;
+	
+	word = (*percents)->next;
+	while (word && i < percents->total_pct_count)
+	{
+		//need first to know word->type in order to call va_arg
+		word->var = va_arg(ap, type);			
+		word = word->next;		
+	}
+	return (0);
+}
 int		lobby(t_ptf	**word)
 {
 	char nurse[8];
@@ -63,11 +76,8 @@ int		lobby(t_ptf	**word)
 	return (0);	
 }
 
-int		d_check(t_ptf **word)
-{
-	printf("hey\n");
-	return (0);
-}
+
+// verifier qu'elle fait bien le taf
 int		check_double_pct(char *format)
 {
 	int i;
@@ -80,3 +90,9 @@ int		check_double_pct(char *format)
 			return (1);
 	return (1);
 }
+
+//int		d_check(t_ptf **word)
+//{
+//	printf("hey\n");
+//	return (0);
+//}
